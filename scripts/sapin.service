@@ -1,0 +1,17 @@
+[Unit]
+Description=Sapin LED API (Flask + rpi_ws281x)
+After=network.target
+
+[Service]
+WorkingDirectory=/home/pi/sapin-app
+# rpi_ws281x via PWM GPIO18 requiert souvent root :
+User=root
+Environment=LED_COUNT=60
+Environment=LED_PIN=18
+Environment=LED_BRIGHTNESS_BOOT=255
+Environment=DEBUG=0
+ExecStart=/home/pi/sapin-app/.venv/bin/python -m backend.app
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
