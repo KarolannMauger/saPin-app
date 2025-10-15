@@ -1,11 +1,15 @@
 import os
 
-class Settings:
-    API_TITLE = "saPin LED API"
-    API_VERSION = "1.0.0"
-    API_PREFIX = "/api/v1"
-    LED_DRIVER = os.getenv("LED_DRIVER", "mock") # "mock" in dev, "rpi_ws281x" on PI
-    API_KEY = os.getenv("API_KEY", "") # empty in dev
-    CORS_ORIGINS = os.getenv("CORS_ORIGINS", "*") # "*" in dev, frontend URL in prod
+# rpi_ws281x docs
+# We need to modify this to match LED strip configuration
+LED_COUNT   = int(os.getenv("LED_COUNT", "60"))
+LED_PIN     = int(os.getenv("LED_PIN", "18"))     # GPIO18 = PWM
+LED_FREQ_HZ = int(os.getenv("LED_FREQ_HZ", "800000"))
+LED_DMA     = int(os.getenv("LED_DMA", "10"))
+LED_INVERT  = os.getenv("LED_INVERT", "0") == "1"
+LED_CHANNEL = int(os.getenv("LED_CHANNEL", "0"))
 
-settings = Settings()
+# App
+HOST = os.getenv("HOST", "0.0.0.0")
+PORT = int(os.getenv("PORT", "8000"))
+DEBUG = os.getenv("DEBUG", "1") == "1"
