@@ -1,0 +1,33 @@
+"""
+We need to this in PI
+python3 -m venv .venv
+source .venv/bin/activate
+pip install Flask flask-cors
+pip freeze > backend/requirements.txt
+
+Install sudo pip3 install rpi_ws281x, maybe no need sudo
+
+Requirements.txt
+Flask==3.0.3
+flask-cors==4.0.1
+"""
+"""
+On PI
+sudo apt update && sudo apt install -y python3-venv git
+git clone https://github.com/KarolannMauger/saPin-app.git
+cd saPin-app
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r backend/requirements.txt
+sudo pip3 install rpi_ws281x
+
+# test direct (root recommandé pour PWM):
+sudo .venv/bin/python -m backend.app
+# Puis depuis ton tel: http://<IP_DU_PI>:8000
+"""
+"""
+To run with service
+sudo cp scripts/sapin.service /etc/systemd/system/sapin.service
+sudo systemctl daemon-reload
+sudo systemctl enable --now sapin
+sudo systemctl status sapin
+"""
