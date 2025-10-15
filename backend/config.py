@@ -1,4 +1,4 @@
-import os;
+import os
 
 class Settings:
     API_TITLE = "saPin LED API"
